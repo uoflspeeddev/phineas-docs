@@ -50,6 +50,31 @@ tabbed interface with enhanced functionality, including a dedicated file manager
 that simplifies file management on the cluster and facilitates seamless information
 transfer between the personal computer and the cluster.
 
+Loading software
+================
+
+In the Linux operating system, program behavior is influenced by dynamic values
+known as "environmental variables." These variables can be created, modified,
+and removed as needed, playing a crucial role in shaping the functionality of 
+programs and services on a computer. For instance, the variable ``PATH`` contains
+a list of file system addresses, separated by colons (:), representing folders
+where binaries are stored. When a command is executed in the terminal,
+the system scans the folders indicated by the addresses within ``PATH``
+in search of a corresponding binary. If the system fails to locate the desired binary,
+it returns an error message stating "command not found."
+
+In addition, scientific software applications like GROMACS or OpenFOAM often define
+their own extensive sets of environmental variables. Managing and keeping track of these variables
+and their intended values can be time-consuming and swiftly give rise to complications.
+To overcome this challenge, the cluster incorporates the use of *Environmental Modules*,
+offering a convenient approach to dynamically adjust users' environments through
+the utilization of modulefiles.
+
+To explore the available modules, users can employ the ``module available`` command,
+allowing them to examine the assortment of modules at their disposal. Subsequently,
+users can load the appropriate module by executing the command ``module load modulename``,
+effectively incorporating the desired module into their environment.
+
 Submitting Jobs
 ===============
 
