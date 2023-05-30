@@ -51,9 +51,20 @@ that simplifies file management on the cluster and facilitates seamless informat
 transfer between the personal computer and the cluster.
 
 Submitting Jobs
-==============
+===============
 
-There are two types of jobs an user can submit: interactive and batch. When submitting
-an interactive job, the user is logged in to whatever node slurm assigns to it so that the user
-can manually execute any program they want. On the other hand, batch jobs run unattended and are
-passed to slurm as BASH scripts.
+Users have the flexibility to submit two distinct types of jobs: interactive and batch.
+With an interactive job, the user gains direct access to the node assigned by Slurm,
+enabling them to personally execute any desired program. In contrast, batch jobs operate
+autonomously and are transmitted to Slurm in the form of BASH scripts,
+executing without the need for user intervention.
+
+In the event of a disconnection from the cluster, whether caused by internet complications
+or other unforeseen issues, batch jobs remain unaffected, persevering independently.
+However, interactive jobs are susceptible to termination, as they rely on the user's
+ongoing connection. To circumvent such circumstances and maintain job continuity,
+users often resort to employing a terminal multiplexer such as tmux.
+By invoking the ``tmux`` command on the head node before initiating an interactive job,
+tmux initiates a persistent terminal session on the head node itself.
+This session persists even if the connection between the user's personal computer and
+the head node becomes severed, ensuring the job remains intact and uninterrupted.
