@@ -53,7 +53,7 @@ transfer between the personal computer and the cluster.
 About Scientific Software
 =========================
 
-In the Linux operating system, program behavior is influenced by dynamic values
+In Linux distributions, program behavior is influenced by dynamic values
 known as "environmental variables." These variables can be created, modified,
 and removed as needed, playing a crucial role in shaping the functionality of 
 programs and services on a computer. For instance, the variable ``PATH`` contains
@@ -76,7 +76,7 @@ users can load the appropriate module by executing the command ``module load mod
 effectively incorporating the desired module into their environment.
 
 About Jobs
-===============
+==========
 
 Users have the flexibility to submit two distinct types of jobs: interactive and batch.
 With an interactive job, the user gains direct access to the node assigned by Slurm,
