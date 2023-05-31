@@ -11,3 +11,4 @@ Welcome to phineas documentation!
    :caption: Contents:
 
    gettingstarted/index
+   guides/index
