@@ -50,8 +50,8 @@ tabbed interface with enhanced functionality, including a dedicated file manager
 that simplifies file management on the cluster and facilitates seamless information
 transfer between the personal computer and the cluster.
 
-Loading software
-================
+About Scientific Software
+=========================
 
 In the Linux operating system, program behavior is influenced by dynamic values
 known as "environmental variables." These variables can be created, modified,
@@ -75,7 +75,7 @@ allowing them to examine the assortment of modules at their disposal. Subsequent
 users can load the appropriate module by executing the command ``module load modulename``,
 effectively incorporating the desired module into their environment.
 
-Submitting Jobs
+About Jobs
 ===============
 
 Users have the flexibility to submit two distinct types of jobs: interactive and batch.

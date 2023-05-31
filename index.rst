@@ -11,10 +11,3 @@ Welcome to phineas documentation!
    :caption: Contents:
 
    gettingstarted/index
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
