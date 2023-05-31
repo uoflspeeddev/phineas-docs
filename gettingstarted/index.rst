@@ -32,7 +32,7 @@ which they can utilize to access the cluster via SSH (Secure Shell Protocol).
 The procedure entails employing an SSH client from their personal computers
 to establish a connection with the head node. Notably, Windows (versions 10 and 11)
 inherently supports an SSH command-line client within PowerShell. Similarly, 
-Mac and Linux operating systems come equipped with a built-in SSH client
+Mac and Linux based operating systems come equipped with a built-in SSH client
 accessible via their respective terminals. 
 The basic login process remains consistent across all of these platforms:
 
@@ -81,7 +81,7 @@ About Jobs
 Users have the flexibility to submit two distinct types of jobs: interactive and batch.
 With an interactive job, the user gains direct access to the node assigned by Slurm,
 enabling them to personally execute any desired program. In contrast, batch jobs operate
-autonomously and are transmitted to Slurm in the form of BASH scripts,
+autonomously and are transmitted to Slurm in the form of shell scripts,
 executing without the need for user intervention.
 
 In the event of a disconnection from the cluster, whether caused by internet complications
