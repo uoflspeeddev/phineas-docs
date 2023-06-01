@@ -1,8 +1,5 @@
-Getting Started
-###############
-
 HPC system overview
-====================
+###################
 
 Phineas consists of a total of 10 servers, with one serving as the coordinator,
 often referred to as the head node, and the remaining nine functioning as workers. The head node
@@ -24,8 +21,8 @@ is restricted exclusively to those users whose jobs are actively running on them
 For instance, if a user named "lk01" submits a job and Slurm allocates the node
 "phineas-c01" for its execution, then "lk01" will have the privilege to log into "phineas-c01".
 
-Logging in to the cluster
-=========================
+Logging into the cluster
+#########################
 
 Upon creating an account, users are provided with a username and password, 
 which they can utilize to access the cluster via SSH (Secure Shell Protocol).
@@ -51,7 +48,7 @@ that simplifies file management on the cluster and facilitates seamless informat
 transfer between the personal computer and the cluster.
 
 About Scientific Software
-=========================
+#########################
 
 In Linux distributions, program behavior is influenced by dynamic values
 known as "environmental variables." These variables can be created, modified,
@@ -76,7 +73,7 @@ users can load the appropriate module by executing the command ``module load mod
 effectively incorporating the desired module into their environment.
 
 About Jobs
-==========
+##########
 
 Users have the flexibility to submit two distinct types of jobs: interactive and batch.
 With an interactive job, the user gains direct access to the node assigned by Slurm,
