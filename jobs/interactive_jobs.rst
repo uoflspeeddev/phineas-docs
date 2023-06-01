@@ -1,5 +1,5 @@
 Starting an interactive job
-===========================
+###########################
 
 Among many other functionalities, the ``srun`` command together with options
 ``-i`` and ``--pty`` is used to launch interactive jobs. Typically, users would

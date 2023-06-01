@@ -1,5 +1,5 @@
 Submitting batch jobs
-=====================
+#####################
 
 The command ``sbatch`` serves as the means to submit batch jobs to Slurm,
 typically in the form of a shell script written in the bash command language.
