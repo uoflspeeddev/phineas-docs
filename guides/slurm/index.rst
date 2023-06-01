@@ -49,3 +49,52 @@ essentially functions as a shell script with additional comments at the beginnin
 As such, any actions that a user would typically carry out in a regular shell session
 can be executed within the script, allowing for flexibility and adaptability to individual
 requirements.
+
+Finally, the script should encompass the core job tasks, 
+which typically involve executing simulations, experiments, or other relevant operations.
+During this phase, users would typically initiate the necessary scientific software required
+for their specific needs.
+
+As an illustrative example, consider the following bash script that defines a
+job named 2d_driven_cavity_flow:
+
+..  code-block:: bash
+    :caption: Example bash script to launch a sbatch job
+
+     #!/bin/bash
+     #SBATCH --job-name=2d_driven_cavity_flow
+     #SBATCH --error=/home/user/2d_driven_cavity_flow.err.%j
+     #SBATCH --output=/home/user/2d_driven_cavity_flow.out.%j
+     #SBATCH --time=05:30:00
+     #SBATCH --ntasks=16
+     #SBATCH --nodes=1
+     #SBATCH --partition=longjobs
+     
+     # START CONFIGURING ENVIRONMENT
+
+     # load Ansys 2023R1 modulefile
+     module load ansys/2023r1
+     # Generate list of hosts where ansys processes
+     # will run
+     HOSTLIST="hosts.$SLURM_JOB_ID"
+     srun hostname | sort > $HOSTLIST
+
+     # FINISHED CONFIGURING ENVIRONMENT
+
+     # Run Fluent
+     fluent 3ddp \
+         -g \
+         -mpi=openmpi\
+         -t $SLURM_NTASKS \
+         -cnf=$HOSTLIST \
+         -i /home/user/2d_driven_cavity_flow.jou \
+         > 2d_driven_cavity_flow.out
+
+In this script, the job is assigned the name *2d_driven_cavity_flow* using the ``#SBATCH --job-name``
+directive. The maximum allowed running time is set to 5 hours and 30 minutes through the 
+``#SBATCH --time`` directive. The job is configured to utilize 1 node (``#SBATCH --nodes``)
+and 16 processors (``#SBATCH --ntasks``). It is intended to run in the *longjobs* queue
+(``#SBATCH --partition``). Any encountered error messages are to be stored in the file 
+``/home/user/2d_driven_cavity_flow.err.%j``, where ``%j`` is replaced with the job ID assigned by Slurm.
+Similarly, non-error messages are directed to the file ``/home/user/2d_driven_cavity_flow.out.%j``
+for logging purposes.
