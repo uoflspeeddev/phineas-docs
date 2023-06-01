@@ -7,8 +7,14 @@ Welcome to phineas documentation!
 ========================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 1
+   :caption: Getting Started
 
    gettingstarted/index
-   guides/index
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Jobs
+
+   jobs/interactive_jobs
+   jobs/batch_jobs
