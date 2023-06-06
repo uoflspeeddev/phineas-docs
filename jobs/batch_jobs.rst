@@ -93,4 +93,24 @@ and 16 processors (``#SBATCH --ntasks``). It is intended to run in the *longjobs
 (``#SBATCH --partition``). Any encountered error messages are to be stored in the file 
 ``/home/user/2d_driven_cavity_flow.err.%j``, where ``%j`` is replaced with the job ID assigned by Slurm.
 Similarly, non-error messages are directed to the file ``/home/user/2d_driven_cavity_flow.out.%j``
-for logging purposes.
+for logging purposes. The environmental variables ``SLURM_JOB_ID`` and ``SLURM_NTASKS`` are passed
+to the script by slurm (see section :ref:`Slurm environmental variables <slurm_env_vars>`).
+
+.. _slurm_env_vars:
+
+Slurm environmental variables
+=============================
+
+When launching a job, slurm retains information about the servers allocated, cores assigned,
+working directory from which the job was launched, among other things. Slurm passes
+this information to the job via environmental variables. The table below shows some variables
+commonly used within the shell scripts of batch jobs.
+
+.. csv-table:: Commonly used Slurm environmental variables
+  :header-rows: 1
+  :widths:  5, 8, 5
+  :stub-columns: 1
+  :file: csv/slurm_env_vars.csv
+
+For more comprehensive details, please consult 
+`Section "OUTPUT ENVIRONMENT VARIABLES" of Slurm's sbatch manual <https://slurm.schedmd.com/sbatch.html#SECTION_OUTPUT-ENVIRONMENT-VARIABLES>`_.
