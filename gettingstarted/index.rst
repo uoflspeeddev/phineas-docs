@@ -38,7 +38,16 @@ The basic login process remains consistent across all of these platforms:
    In this particular scenario, the hostname is always phineas.spd.louisville.edu.
    For instance, if the user's name is "lk01," they would input
    ``ssh lk01@phineas.spd.louisville.edu``.
+   
+   .. image:: images/login_example.png
+     :width: 600
+     :alt: Example: cluster login
+
 3. Provide your password and press Enter.
+
+   .. image:: images/login_example_2.png
+     :width: 600
+     :alt: Example: logged into the cluster
 
 Alternatively, users can opt for other popular SSH clients installed on their personal computers,
 such as `MobaXterm <https://mobaxterm.mobatek.net/>`_ and `PuTTY <https://www.putty.org/>`_.
