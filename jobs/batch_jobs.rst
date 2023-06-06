@@ -40,12 +40,11 @@ it is recommended that users load the corresponding modulefiles within the scrip
 the ``module load <modulefile>`` command.
 Alternatively, users have the option to load their custom modulefiles or manually set
 the required environmental variables, depending on their preferences and specific needs.
-Additionally, any additional tasks such as directory or file creation, among others,
-should be performed at this stage. It is important to note that the submission script
+Any additional tasks such as directory or file creation, among others,
+should be performed at this stage. Note that the submission script
 essentially functions as a shell script with additional comments at the beginning.
 As such, any actions that a user would typically carry out in a regular shell session
-can be executed within the script, allowing for flexibility and adaptability to individual
-requirements.
+can be executed within the script.
 
 Finally, the script should encompass the core job tasks, 
 which typically involve executing simulations, experiments, or other relevant operations.
