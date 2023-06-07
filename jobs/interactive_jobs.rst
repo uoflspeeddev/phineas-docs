@@ -1,5 +1,5 @@
 Starting an interactive job
-###########################
+===========================
 
 In addition to its various capabilities, the ``srun`` command,
 in conjunction with the options ``-i`` and ``--pty``,

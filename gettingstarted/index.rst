@@ -1,6 +1,9 @@
 HPC system overview
 ###################
 
+About the cluster
+=================
+
 Phineas consists of a total of 10 servers, with one serving as the coordinator,
 often referred to as the head node, and the remaining nine functioning as workers. The head node
 assumes the crucial role of overseeing state management and orchestrating the distributed
@@ -21,8 +24,55 @@ is restricted exclusively to those users whose jobs are actively running on them
 For instance, if a user named "lk01" submits a job and Slurm allocates the node
 "phineas-c01" for its execution, then "lk01" will have the privilege to log into "phineas-c01".
 
+About Scientific Software
+=========================
+
+In Linux distributions, program behavior is influenced by dynamic values
+known as "environmental variables." These variables can be created, modified,
+and removed as needed, playing a crucial role in shaping the functionality of 
+programs and services on a computer. For instance, the variable ``PATH`` contains
+a list of file system addresses, separated by colons (:), representing folders
+where binaries are stored. When a command is executed in the terminal,
+the system scans the folders indicated by the addresses within ``PATH``
+in search of a corresponding binary. If the system fails to locate the desired binary,
+it returns an error message stating "command not found."
+
+In addition, scientific software applications like GROMACS or OpenFOAM often define
+their own extensive sets of environmental variables. Managing and keeping track of these variables
+and their intended values can be time-consuming and swiftly give rise to complications.
+To overcome this challenge, the cluster incorporates the use of *Environmental Modules*,
+offering a convenient approach to dynamically adjust users' environments through
+the utilization of modulefiles.
+
+To explore the available modules, users can employ the ``module available`` command,
+allowing them to examine the assortment of modules at their disposal. Subsequently,
+users can load the appropriate module by executing the command ``module load modulename``,
+effectively incorporating the desired module into their environment.
+
+About Jobs
+==========
+
+Users have the flexibility to submit two distinct types of jobs: interactive and batch.
+With an interactive job, the user gains direct access to the node assigned by Slurm,
+enabling them to personally execute any desired program. In contrast, batch jobs operate
+autonomously and are transmitted to Slurm in the form of shell scripts,
+executing without the need for user intervention.
+
+In the event of a disconnection from the cluster, whether caused by internet complications
+or other unforeseen issues, batch jobs remain unaffected, persevering independently.
+However, interactive jobs are susceptible to termination, as they rely on the user's
+ongoing connection. To circumvent such circumstances and maintain job continuity,
+users often resort to employing a terminal multiplexer such as tmux.
+By invoking the ``tmux`` command on the head node before initiating an interactive job,
+tmux initiates a persistent terminal session on the head node itself.
+This session persists even if the connection between the user's personal computer and
+the head node becomes severed, ensuring the job remains intact and uninterrupted.
+
+Quickstart
+##########
+
 Logging into the cluster
-#########################
+========================
 
 Upon creating an account, users are provided with a username and password, 
 which they can utilize to access the cluster via SSH (Secure Shell Protocol).
@@ -56,46 +106,32 @@ tabbed interface with enhanced functionality, including a dedicated file manager
 that simplifies file management on the cluster and facilitates seamless information
 transfer between the personal computer and the cluster.
 
-About Scientific Software
-#########################
+Copying files to/from the cluster
+=================================
 
-In Linux distributions, program behavior is influenced by dynamic values
-known as "environmental variables." These variables can be created, modified,
-and removed as needed, playing a crucial role in shaping the functionality of 
-programs and services on a computer. For instance, the variable ``PATH`` contains
-a list of file system addresses, separated by colons (:), representing folders
-where binaries are stored. When a command is executed in the terminal,
-the system scans the folders indicated by the addresses within ``PATH``
-in search of a corresponding binary. If the system fails to locate the desired binary,
-it returns an error message stating "command not found."
+The command ``scp`` (available on Windows, Mac and Linux based OSs) is the preferred way
+to copy files to and from the cluster. See a comprehensive list of options at the
+`scp guide <https://man.openbsd.org/scp>`_. Since a user's
+home directory (``/home/<username>``, or simply ``~``) is shared across all nodes, users are encouraged
+to use their home directories as a staging area for file transfers.
 
-In addition, scientific software applications like GROMACS or OpenFOAM often define
-their own extensive sets of environmental variables. Managing and keeping track of these variables
-and their intended values can be time-consuming and swiftly give rise to complications.
-To overcome this challenge, the cluster incorporates the use of *Environmental Modules*,
-offering a convenient approach to dynamically adjust users' environments through
-the utilization of modulefiles.
+**Example:** Assume user Jhon Doe is assigned cluster account ``jh01``. The code below
+shows how Jhon would copy the file ``C:\Users\jhondoe\Downloads\workload.jou`` from his
+personal computer to his home directory (``/home/jh01``) in the cluster using the 
+``scp`` command in Windows PowerShell.
 
-To explore the available modules, users can employ the ``module available`` command,
-allowing them to examine the assortment of modules at their disposal. Subsequently,
-users can load the appropriate module by executing the command ``module load modulename``,
-effectively incorporating the desired module into their environment.
+..  code-block:: powershell
+    
+    # Jhon could also use ~ instead of /home/jh01. That is, the following is also valid:
+    # scp C:\Users\jhondoe\Downloads\workload.jou jh01@phineas.spd.louisville.edu:~
+    scp C:\Users\jhondoe\Downloads\workload.jou jh01@phineas.spd.louisville.edu:/home/jh01
 
-About Jobs
-##########
+Suppose Jhon Doe ran a simulation and got the results stored at ``/home/jh01/results/sim_1_res.dat``
+in the cluster. If he wants to copy these retults to the folder ``C:\Users\jhondoe\Documents`` 
+of his Windows PC, he would execute the command below from a PowerShell session:
 
-Users have the flexibility to submit two distinct types of jobs: interactive and batch.
-With an interactive job, the user gains direct access to the node assigned by Slurm,
-enabling them to personally execute any desired program. In contrast, batch jobs operate
-autonomously and are transmitted to Slurm in the form of shell scripts,
-executing without the need for user intervention.
-
-In the event of a disconnection from the cluster, whether caused by internet complications
-or other unforeseen issues, batch jobs remain unaffected, persevering independently.
-However, interactive jobs are susceptible to termination, as they rely on the user's
-ongoing connection. To circumvent such circumstances and maintain job continuity,
-users often resort to employing a terminal multiplexer such as tmux.
-By invoking the ``tmux`` command on the head node before initiating an interactive job,
-tmux initiates a persistent terminal session on the head node itself.
-This session persists even if the connection between the user's personal computer and
-the head node becomes severed, ensuring the job remains intact and uninterrupted.
+..  code-block:: powershell
+    
+    # The following is also valid:
+    # scp jh01@phineas.spd.louisville.edu:~/results/sim_1_res.dat C:\Users\jhondoe\Documents
+    scp jh01@phineas.spd.louisville.edu:/home/jh01/results/sim_1_res.dat C:\Users\jhondoe\Documents
