@@ -19,7 +19,20 @@ templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 latex_elements = {
-  'extraclassoptions': 'openany,oneside'
+  'extraclassoptions': 'openany,oneside',
+
+    # The paper size ('letterpaper' or 'a4paper').
+    'papersize': 'a4paper',
+
+    # The font size ('10pt', '11pt' or '12pt').
+    'pointsize': '10pt',
+
+    # Additional stuff for the LaTeX preamble.
+    'preamble': r'''
+        \usepackage{charter}
+        \usepackage[defaultsans]{lato}
+        \usepackage{inconsolata}
+    ''',
 }
 
 # -- Options for HTML output -------------------------------------------------
