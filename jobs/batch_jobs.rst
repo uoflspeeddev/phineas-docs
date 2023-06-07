@@ -1,3 +1,5 @@
+.. _batch_job:
+
 Submitting batch jobs
 =====================
 
@@ -51,7 +53,7 @@ which typically involve executing simulations, experiments, or other relevant op
 During this phase, users would typically initiate the necessary scientific software required
 for their specific needs.
 
-As an illustrative example, consider the following bash script that defines a
+**Example:** Consider the following bash script that defines a
 job named 2d_driven_cavity_flow:
 
 ..  code-block:: bash
@@ -95,6 +97,13 @@ and 16 processors (``#SBATCH --ntasks``). It is intended to run in the *longjobs
 Similarly, non-error messages are directed to the file ``/home/user/2d_driven_cavity_flow.out.%j``
 for logging purposes. The environmental variables ``SLURM_JOB_ID`` and ``SLURM_NTASKS`` are passed
 to the script by slurm (see section :ref:`Slurm environmental variables <slurm_env_vars>`).
+
+Suppose this script is located at path: ``/home/user/2d_driven_cavity.sh``. Then,
+the command below would submit the batch job to slurm:
+
+..  code-block:: bash
+    
+    sbatch /home/user/2d_driven_cavity.sh
 
 .. _slurm_env_vars:
 

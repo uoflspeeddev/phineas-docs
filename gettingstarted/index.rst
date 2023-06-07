@@ -135,3 +135,124 @@ of his Windows PC, he would execute the command below from a PowerShell session:
     # The following is also valid:
     # scp jh01@phineas.spd.louisville.edu:~/results/sim_1_res.dat C:\Users\jhondoe\Documents
     scp jh01@phineas.spd.louisville.edu:/home/jh01/results/sim_1_res.dat C:\Users\jhondoe\Documents
+
+Using software installed in the cluster
+=======================================
+
+List available software
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Use command ``module avail`` as shown in the example below:
+
+..  code-block:: bash
+  :caption: Example list of available software
+    
+    user@phineas-c00:~$ module avail
+
+    ------------------------------- /apps/modulefiles/Linux ---------------------------
+       ansys/2023r1                                         mkl/2023.0.0
+       boost/1.81_gcc12.2_ompi4.1.5_python3.11.2            mpc/1.3.1
+       cloog/0.20.0                                         mpfr/4.2.0
+       cmake/3.26.1                                         openblas/0.3.21_gcc12.2
+       fftw/3.3.10_ompi4.1.5_gcc12.2                        openfoam/2212
+       gcc/12.2                                             openmpi/4.1.5_gcc12.2   (D)
+       gmp/6.2.1                                            openmpi/4.1.5
+       gromacs/2023_ompi4.1.5_gcc12.2                (S)    openssl/3.0.8_gcc12.2
+       icu/72.1_gcc12.2                                     python/3.11.2_gcc12.2
+       infiniband                                           ucx/1.14.0_gcc12.2
+       lammps/23Jun2022_fftw3.3.10_ompi4.1.5_gcc12.2        zlib/1.2.13
+       miniconda3/23.1.0
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+       D:  Default Module
+
+Load software
+^^^^^^^^^^^^^
+
+Users **must** load programs with the ``module load <modulename>`` before launching them.
+Multiple programs can be loaded at the same time, but there are cases where two or more may conflict.
+For instance, programs ``openmpi/4.1.5_gcc12.2`` and ``openmpi/4.1.5`` cannot be loaded together.
+For such cases the program loaded last is used. An example of this is shown below:
+
+..  code-block:: bash
+  :caption: Example of conflicting programs
+
+    user@phineas-c00:~$ module load openmpi/4.1.5_gcc12.2
+    user@phineas-c00:~$ module load openmpi/4.1.5
+
+    Lmod is automatically replacing "gcc/12.2" with "openmpi/4.1.5".
+
+
+    The following have been reloaded with a version change:
+      1) openmpi/4.1.5_gcc12.2 => openmpi/4.1.5
+
+**Remark:** Programs **MUST** only be run through slurm, **NOT** on the head node (phineas-c00).
+Users can test their scripts using an interactive job first and then submit the appropriate
+batch job (See Section :ref:`Slurm <slurm>` for more details).
+
+List currently loaded software
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use command ``module list`` as shown in the example below:
+
+..  code-block:: bash
+  :caption: Example list of currently loaded software
+
+    user@phineas-c00:~$ module load python/3.11.2_gcc12.2
+    user@phineas-c00:~$ module list
+
+    Currently Loaded Modules:
+      1) zlib/1.2.13   4) mpc/1.3.1      7) openssl/3.0.8_gcc12.2
+      2) gmp/6.2.1     5) cloog/0.20.0   8) python/3.11.2_gcc12.2
+      3) mpfr/4.2.0    6) gcc/12.2
+
+Note that besides ``python/3.11.2_gcc12.2`` there are other programs loaded.
+These other programs are dependencies that are automatically loaded.
+
+Unloading software
+^^^^^^^^^^^^^^^^^^
+
+Use command ``module unload <modulefile>``. This command only unloads the
+indicated program, but not its dependencies. To clean the environment and
+unload all modules, users should use the command ``module purge``. Example:
+
+..  code-block:: bash
+  :caption: Example on how to unload software
+
+    user@phineas-c00:~$ module load python/3.11.2_gcc12.2
+    user@phineas-c00:~$ module unload python/3.11.2_gcc12.2
+    user@phineas-c00:~$ module list
+
+    Currently Loaded Modules:
+      1) zlib/1.2.13   4) mpc/1.3.1      7) openssl/3.0.8_gcc12.2
+      2) gmp/6.2.1     5) cloog/0.20.0
+      3) mpfr/4.2.0    6) gcc/12.2
+
+
+
+    user@phineas-c00:~$ module purge
+    user@phineas-c00:~$ module list
+    No modules loaded
+
+Queues and jobs
+===============
+
+- The cluster has two queues named *longjobs* and *gpgpu*.
+- To **see information about queues**, users can use the ``sinfo`` command.
+- When users send jobs, they can monitor their job status using the ``squeue`` command.
+- To **launch an interactive job**, users can user the
+  ``srun --time=<walltime> --pty /bin/bash -i`` command.
+  See Section :ref:`Starting an interactive job <interactive_job>` for more information.
+- To **submit an unattended job**, users can use the command ``sbatch`` as follows: 
+  ``sbatch /path/to/sbatch/script``.
+  See Section :ref:`Submitting batch jobs <batch_job>` for more information
+- To **cancel jobs**, users can use the ``scancel`` command as follows: ``scancel jobid``
+
+Limits
+======
+
+- Users cannot request more than 3 nodes on a single job.
+- A job can only request a maximum of 20 cores per node and 120GB of memory.
+- The maximum allowed walltime for jobs on all queues is 1 day and 12h. Contact Speed IT if more
+  time is required for a job.

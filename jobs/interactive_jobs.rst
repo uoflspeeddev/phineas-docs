@@ -1,3 +1,5 @@
+.. _interactive_job:
+
 Starting an interactive job
 ===========================
 
