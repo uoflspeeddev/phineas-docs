@@ -17,3 +17,9 @@ Welcome to phineas documentation!
    :caption: Jobs
 
    jobs/index
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Software
+
+   software/index
