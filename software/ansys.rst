@@ -6,6 +6,9 @@ Ansys
 Mechanical APDL (MAPDL)
 =======================
 
+How to run?
+^^^^^^^^^^^
+
 There are two executables that can be used to invoke the solver from the command line:
 
 - ``mapdl``
