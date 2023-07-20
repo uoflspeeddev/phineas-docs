@@ -20,8 +20,11 @@ In the template, ``<nodes>`` represents the desired number of nodes to be alloca
 
 Alternatively, users have the flexibility to include additional options, 
 such as ``--mem``, to further customize the job requirements if the default settings are insufficient.
-However, it is important to note that interactive jobs are primarily intended for testing purposes.
-For more substantial workloads, it is highly recommended to submit batch jobs.
+
+.. note::
+
+    Interactive jobs are primarily intended for testing purposes.
+    For more substantial workloads, it is highly recommended to submit batch jobs.
 
 Upon initiation of an interactive job, the system will provide feedback in the form of output
 similar to the following:
@@ -36,6 +39,21 @@ Subsequently, the user will be logged into one of the nodes allocated specifical
 Note that concluding the command prompt session will result in the termination of the job.
 Furthermore, if the job surpasses the defined limits in terms of walltime or memory usage,
 it will be automatically aborted.
+
+**Example:**
+
+.. code-block:: bash
+
+    # 1. log into the cluster
+    ssh user@phineas.spd.louisville.edu
+    # 2. start a job in the longjobs queue with the following specifications:
+    #    a) The maximum time allowed for the job to run is 5h (--time=5:00:00)
+    #    b) The maximum memory that can be used by the job is 10G (--mem=10G)
+    #    c) Run on a single node (--nodes=1)
+    #    d) Allocate 4 cores for this job on the node (--ntasks-per-node=4)
+    #    e) Specify the job type is interactive (-i)
+    #    f) Specify the task (a shell in this case) to execute (--pty /bin/bash)
+    srun --partition=longjobs --time=5:00:00 --mem=10G --ntasks-per-node=4 --nodes=1 --pty /bin/bash -i
 
 Keeping an interactive job alive
 ================================
