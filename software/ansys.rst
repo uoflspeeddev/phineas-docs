@@ -1,13 +1,10 @@
-.. _ansys:
-
-Ansys
-=====
+.. _ansys-mech:
 
 Mechanical APDL (MAPDL)
-^^^^^^^^^^^^^^^^^^^^^^^
+=======================
 
 Basics
-~~~~~~
+^^^^^^
 
 There are two executables that can be used to invoke the solver from the command line:
 
@@ -24,7 +21,7 @@ executable works the same.
    portable across ansys versions.
 
 Parallel and distributed modes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ``mapdl`` can be invoked with support for 3 processing mechanisms: *Shared-memory parallel (SMP)*,
 *Distributed-memory parallel (DMP)* and *Mixed DMP-SMP*. As per Ansys documentation:
@@ -44,7 +41,7 @@ The following table shows the capabilities of each solver to run on each of the 
   :file: csv/ansys_mapdl_parallel_capabilities.csv
 
 Command line options
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 The table below shows some of the most useful options to invoke ``mapdl`` with. To have
 more detailed information about what other options are available, please refer to 
@@ -57,7 +54,7 @@ chapter 4 of the ANSYS Mechanical APDL Operations Guide.
   :file: csv/ansys_mapdl_cmds.csv
 
 Run in a single node 
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 If running a DMP analysis, use the ``-dis`` option to enable DMP mode
 and ``-np`` to specify the number of cores. For example:
@@ -78,7 +75,7 @@ of threads per process. For example:
     mapdl -dis -np 4 -nt 4 -i input.dat -o solve.out
 
 Run in multiple nodes
-~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^
 
 This is only supported in DMP mode and can be achieved by using the ``-machines`` option
 or an MPI file specified through the ``-mpifile`` option.
