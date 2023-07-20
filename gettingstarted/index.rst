@@ -77,7 +77,12 @@ Logging into the cluster
 Upon creating an account, users are provided with a username and password, 
 which they can utilize to access the cluster via SSH (Secure Shell Protocol).
 The procedure entails employing an SSH client from their personal computers
-to establish a connection with the head node. Notably, Windows (versions 10 and 11)
+to establish a connection with the head node. 
+
+Using the command line
+^^^^^^^^^^^^^^^^^^^^^^
+
+Windows (versions 10 and 11)
 inherently supports an SSH command-line client within PowerShell. Similarly, 
 Mac and Linux based operating systems come equipped with a built-in SSH client
 accessible via their respective terminals. 
@@ -85,8 +90,8 @@ The basic login process remains consistent across all of these platforms:
 
 1. Launch the terminal on your personal computer.
 2. Enter the ssh command using the following format: ``ssh username@hostname``. 
-   In this particular scenario, the hostname is always phineas.spd.louisville.edu.
-   For instance, if the user's name is "lk01," they would input
+   In this particular scenario, the hostname is always ``phineas.spd.louisville.edu``.
+   For instance, if the user's name is "lk01", they would input
    ``ssh lk01@phineas.spd.louisville.edu``.
    
    .. image:: images/login_example.png
@@ -106,8 +111,35 @@ tabbed interface with enhanced functionality, including a dedicated file manager
 that simplifies file management on the cluster and facilitates seamless information
 transfer between the personal computer and the cluster.
 
+Using MobaXterm
+^^^^^^^^^^^^^^^
+
+1. Click on "Session" at the top-left of the window
+
+   .. image:: images/mobaxterm_conn_setup_1.png
+     :width: 800
+
+2. Setup your username and the cluster hostname ``phineas.spd.louisville.edu``
+
+   .. image:: images/mobaxterm_conn_setup_2.png
+     :width: 800
+
+3. A notice like the one below will appear the first time you connect to the cluster.
+   Click "Accept".
+
+   .. image:: images/mobaxterm_conn_setup_3.png
+     :width: 800
+
+4. Write your password (it will not be displayed as you type it) and hit Enter
+
+   .. image:: images/mobaxterm_conn_setup_4.png
+     :width: 800
+
 Copying files to/from the cluster
 =================================
+
+Using the command line
+^^^^^^^^^^^^^^^^^^^^^^
 
 The command ``scp`` (available on Windows, Mac and Linux based OSs) is the preferred way
 to copy files to and from the cluster. See a comprehensive list of options at the
@@ -135,6 +167,38 @@ of his Windows PC, he would execute the command below from a PowerShell session:
     # The following is also valid:
     # scp jh01@phineas.spd.louisville.edu:~/results/sim_1_res.dat C:\Users\jhondoe\Documents
     scp jh01@phineas.spd.louisville.edu:/home/jh01/results/sim_1_res.dat C:\Users\jhondoe\Documents
+
+Using MobaXterm
+^^^^^^^^^^^^^^^
+
+Downloading files or folders from the cluster
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Locate the "File Explorer" from MobaXterm and navigate towards the location where the file
+   or folder you want to download resides in.
+
+   .. image:: images/mobaxterm_file_copy_1.png
+     :width: 800
+
+2. Right click on the file or folder you want to download from the cluster and click on "Download".
+
+   .. image:: images/mobaxterm_file_copy_2.png
+     :width: 800
+
+Uploading files or folders to the cluster
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Locate the "File Explorer" from MobaXterm and navigate towards the location where 
+  you want to upload your files to.
+
+   .. image:: images/mobaxterm_file_copy_1.png
+     :width: 800
+
+2. Click on the upload icon within the "File Explorer" and select the file or folder you want to
+   upload.
+
+   .. image:: images/mobaxterm_file_copy_3.png
+     :width: 800
 
 Using software installed in the cluster
 =======================================
