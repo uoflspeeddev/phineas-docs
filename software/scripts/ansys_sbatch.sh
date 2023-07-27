@@ -5,7 +5,7 @@
 #SBATCH --time=05:30:00
 #SBATCH --mem=120G
 #SBATCH --ntasks-per-node=20
-#SBATCH --nodes=3
+#SBATCH --nodes=2
 #SBATCH --partition=longjobs
 
 ##############################################################
