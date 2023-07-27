@@ -1,10 +1,10 @@
-#!/bin/env bash
+#!/bin/bash
 
 BASE_DIR="/home/username/simulation"
 WORK_DIR="/tmp/$SLURM_JOB_ID"
 INPUT_FILE="$WORK_DIR/remote.dat"
 OUTPUT_FILE="$WORK_DIR/mapdl_output.out"
-RETRIES=1
+TRIES=2
 
 # Get hostnames of allocated nodes for the job
 declare -a NODES
@@ -32,15 +32,14 @@ module load infiniband ansys/2023r1
 
 cd $WORK_DIR
 
-try=0
-while [ $try -le $RETRIES ]; do
-        mapdl -dis -usessh -b -s noread -apip on \
-                -mpi openmpi \
-                -p ansys \
-                -j 'file' \
-                -machines "$MACHINES" \
-                -dir "$WORK_DIR" \
-                -i "$INPUT_FILE" \
-                -o "$OUTPUT_FILE"
-        if [ $? == 0 ]; then try=$(( $RETRIES + 1 )) else try=$(( $try + 1)); fi
+for ((i = 0; i < $TRIES; i++)); do
+    mapdl -dis -usessh -b -s noread -apip on \
+        -mpi openmpi \
+        -p ansys \
+        -j 'file' \
+        -machines "$MACHINES" \
+        -dir "$WORK_DIR" \
+        -i "$INPUT_FILE" \
+        -o "$OUTPUT_FILE"
+    if [ $? == 0 ]; then break; fi
 done
