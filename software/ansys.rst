@@ -128,3 +128,34 @@ MPI file differs from one MPI type to another. For example:
     EOF
     # run mapdl
     mapdl -dis -mpi openmpi -mpifile mpifile_openmpi -i input.dat -o solve.out
+
+.. _workbench_export_to_apdl:
+
+Export model from Workbench to APDL
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To export a model (including geometry) from ANSYS Workbench to Mechanical APDL:
+
+1. In ANSYS Workbench, navigate to the project in which the model you wish to
+   export is located.
+2. Right-click on the model in the Project Schematic and select "Export Model..."
+3. In the "Export Model" dialog box, select "Mechanical APDL" as the file format
+   and choose a location to save the exported file.
+4. Click "OK" to complete the export process.
+
+Submit a MAPDL batch job
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+1. Generate an appropriate Mechanical APDL input file. If you are using workbench,
+   check Section :ref:`workbench_export_to_apdl` or Ansys Workbench Manual for more
+   information on how to export your model to Mechanical APDL.
+2. Copy sources (MAPDL input files) to the cluster staging area 
+   (somewhere within your home directory).
+3. Create a batch script that runs ``mapdl``.
+4. Submit the batch script using the ``sbatch`` command.
+
+Batch script
+^^^^^^^^^^^^
+
+.. literalinclude:: scripts/ansys_sbatch.sh
+  :language: bash
