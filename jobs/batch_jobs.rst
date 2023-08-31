@@ -8,12 +8,13 @@ typically in the form of a shell script written in the bash command language.
 .. note::
    A shell script is essentially a text file containing instructions
    that are parsed and executed by a shell or command-line interpreter.
-   
+
 When submitting a job to Slurm, the shell script must adhere to the following requirements:
 
 1. The first line of the script should specify the shell to be used.
    This is accomplished by including a shebang (``#!``) followed by ``/bin/env``, a space,
    and the name of the desired shell. For example, for a bash script: ``#!/bin/env bash``.
+   Alternatively, the path to the shell can be used directly: ``#!/bin/bash``.
 
 2. The script should define a set of parameters in the form of comments
    (lines preceded by the ``#`` symbol). These parameters are utilized by Slurm
@@ -39,11 +40,11 @@ For more comprehensive details, please consult
 
 Once the necessary parameters have been incorporated into the script,
 users should proceed to configure the environment for the application they intend to execute.
-If the job involves utilizing a scientific software installed within the cluster,
-it is recommended that users load the corresponding modulefiles within the script using
+If the job uses a software installed within the cluster,
+users are encouraged to load the corresponding modulefiles within the script using
 the ``module load <modulefile>`` command.
-Alternatively, users have the option to load their custom modulefiles or manually set
-the required environmental variables, depending on their preferences and specific needs.
+Alternatively, users can load their custom modulefiles or manually set
+the required environmental variables.
 Any additional tasks such as directory or file creation, among others,
 should be performed at this stage. Note that the submission script
 essentially functions as a shell script with additional comments at the beginning.
@@ -59,7 +60,7 @@ for their specific needs.
 job named 2d_driven_cavity_flow:
 
 ..  code-block:: bash
-    :caption: Example bash script to launch a sbatch job
+    :caption: Example bash script to launch a batch job
 
      #!/bin/bash
      #SBATCH --job-name=2d_driven_cavity_flow
