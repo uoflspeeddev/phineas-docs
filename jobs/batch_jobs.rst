@@ -5,9 +5,11 @@ Submitting batch jobs
 
 The command ``sbatch`` serves as the means to submit batch jobs to Slurm,
 typically in the form of a shell script written in the bash command language.
+
 .. note::
-   A shell script is essentially a text file containing instructions
-   that are parsed and executed by a shell or command-line interpreter.
+
+    A shell script is essentially a text file containing instructions
+    that are parsed and executed by a shell or command-line interpreter.
 
 When submitting a job to Slurm, the shell script must adhere to the following requirements:
 
