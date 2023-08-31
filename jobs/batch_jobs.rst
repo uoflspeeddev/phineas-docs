@@ -128,3 +128,12 @@ commonly used within the shell scripts of batch jobs.
 
 For more comprehensive details, please consult 
 `Section "OUTPUT ENVIRONMENT VARIABLES" of Slurm's sbatch manual <https://slurm.schedmd.com/sbatch.html#SECTION_OUTPUT-ENVIRONMENT-VARIABLES>`_.
+
+Other environmental variables
+=============================
+
+.. csv-table:: Commonly used Slurm environmental variables
+  :header-rows: 1
+  :widths:  5, 8
+  :stub-columns: 1
+  :file: csv/prolog_env_vars.csv
