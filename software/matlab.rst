@@ -58,6 +58,47 @@ Users are encouraged to read more about cluster profiles in the
 `"Use Cluster Profiles" section <https://www.mathworks.com/help/parallel-computing/discover-clusters-and-use-cluster-profiles.html>`_
 of MathWorks' documentation.
 
+BEFORE submitting any parallel/distributed job
+==============================================
+
+Users must follow these steps only ONCE (i.e. do it one time and never do it again).
+
+#. Log into the cluster.
+#. Execute the ``matlab`` binary in the head node. For example,
+
+    .. code-block:: bash
+
+        user@phineas-c00:~$ module load matlab/r2023b
+        user@phineas-c00:~$ matlab -nodisplay  -nosplash -nodesktop
+        
+                                                        < M A T L A B (R) >
+                                              Copyright 1984-2023 The MathWorks, Inc.
+                                         R2023b Update 3 (23.2.0.2409890) 64-bit (glnxa64)
+                                                          October 4, 2023
+
+
+        To get started, type doc.
+        For product information, visit www.mathworks.com.
+
+        >>
+
+#. Create the following cluster profile:
+
+    .. code-block:: matlabsession
+
+        >> cluster = parallel.cluster.Generic( ...
+        >> 'JobStorageLocation', '~/.matlab/local_cluster_jobs/R2023b', ...
+        >> 'NumWorkers', 60, ...
+        >> 'ClusterMatlabRoot', '/apps/matlab/r2023b', ...
+        >> 'OperatingSystem', 'unix', ...
+        >> 'HasSharedFilesystem', true, ...
+        >> 'PluginScriptsLocation', '/apps/matlab/r2023b/toolbox/local/cluster.local/matlab-parallel-slurm-plugin-2.1.1');
+        >> saveAsProfile(cluster, 'phineas-local');
+
+#. Validate that the cluster profile was saved. To do this, exit from MATLAB's command prompt using ``exit()``, execute matlab again as in step 1 and load the profile by using ``parcluster('phineas-local');``. If no error is printed, then the profile was successfully loaded and users can proceed to the next step.
+
+#. Set the newly created cluster profile as the default profile by executing in the MATLAB prompt: ``parallel.defaultProfile('phineas-local');``
+
 .. _matlab-batch-job:
 
 Submitting a batch job
