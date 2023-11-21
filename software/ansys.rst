@@ -1,5 +1,48 @@
 .. _ansys-mech:
 
+Remote Solver Manager (RSM)
+===========================
+
+Setup
+^^^^^
+The RSM is used by ANSYS Workbench to submit jobs to the cluster directly from Workbench on an user's desktop.
+
+.. warning::
+  To use this feature Phineas users must have Ansys 2023R2 installed on their desktops.
+
+#. Open the Ansys RSM application in your workstation and click on the "Add Cluster" button:
+
+    .. image:: images/ansys_rsm_1.png
+         :width: 800
+
+#. In the "HPC Resource" tab fill in the fields and checkboxes as shown below. On the "Submit host" field indicate the IP address of the cluster (submit a ticket to Speed IT to get the IP if you do not already have it):
+
+    .. image:: images/ansys_rsm_2.png
+         :width: 800
+
+#. In the "File Management" tab fill in the fields and checkboxes as shown below. Replace the word **USERNAME** with your actual username **in the cluster**.
+
+    .. image:: images/ansys_rsm_3.png
+         :width: 800
+
+#. Before continuing to the "Queues" tab, navigate to the "credentials" section located at the left-most pane. Then, under section "Accounts" (on the mid pane) ensure that your user is spelled **EXACTLY** as in the cluster. If a default user appears and it is not spelled as your cluster username, delete using the "Delete button" and create a new one using the "Create button" as shown in the image below.
+
+    .. warning::
+      If you are using a computer from the university, your default username will show up with the prefix "AD\\", which is **INCORRECT**.
+
+    .. image:: images/ansys_rsm_4.png
+         :width: 800
+
+#. Click on the "Phineas" section on the left-most pane and navigate to the "Queues" tab. Then click the "Discover button" as shown below.
+
+    .. image:: images/ansys_rsm_5.png
+         :width: 800
+
+Usage
+^^^^^
+
+Start watching `this Ansys Tutorial <https://youtu.be/QPld56j93wc>`_ from minute 5:55.
+
 Mechanical APDL (MAPDL)
 =======================
 
